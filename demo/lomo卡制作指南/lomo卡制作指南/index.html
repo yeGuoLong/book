@@ -1,0 +1,128 @@
+<?php
+include $_SERVER['DOCUMENT_ROOT'].'/com/jsback/wct/jssdk.php';
+//获取微信相关信息
+
+$appId = 'wx2b98b68e4a66d204';
+$appSecret = '20a3af2d88d8919ae0730f34f167824a';
+$jssdk = new JSSDK ( $appId, $appSecret );
+$signPackage = $jssdk->getSignPackage ();
+?>
+
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, minimal-ui">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?fbfaceba240cb3a126a32ad24ba7955b";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<title>速美LOMO卡</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+<div class="pages" id="pages">
+<section class="page page-1 play" style="-webkit-transform: translate3d(0px, 0px, 0px);">
+   <div class="tx"><img src="images/page1_tx1.png"></div>
+   <div class="l_right"><img src="images/page1_pic1.png"></div>
+   <div class="pic2"><img src="images/code1.png"></div>
+   <div class="drop-up"></div>
+</section>
+<section class="page page-3">
+   <div class="tx1"><img src="images/page3_tx1.png"></div>
+   <div class="pic1"></div>
+   <div class="line_bg"></div>
+   <div class="drop-up"></div>
+</section>
+<section class="page page-4">
+   <div class="tx1"><img src="images/page4_tx1.png"></div>
+   <div class="pic1"></div>
+   <div class="line_bg"></div>
+   <div class="drop-up"></div>
+</section>
+<section class="page page-5">
+   <div class="tx1"><img src="images/page5_tx1.png"></div>
+   <div class="pic1"></div>
+   <div class="line_bg"></div>
+   <div class="drop-up"></div>
+</section>
+<section class="page page-6">
+   <div class="tx1"><img src="images/page6_tx1.png"></div>
+   <div class="pic1"></div>
+   <div class="line_bg"></div>
+   <div class="drop-up"></div>
+</section>
+<section class="page page-7">
+   <div class="tx1"><img src="images/page7_tx1.png"></div>
+   <div class="pic1"></div>
+   <div class="line_bg"></div>
+   <div class="drop-up"></div>
+</section>
+<section class="page page-8">
+   <div class="tx1"><img src="images/page8_tx1.png"></div>
+   <div class="pic1"></div>
+   <div class="drop-up"></div>
+</section>
+
+<section class="page page-9">
+   <div class="tx1"><img src="images/page9_tx1.png"></div>
+   <div class="pic1"></div>
+   <div class="line_bg"></div>
+   <div class="drop-up"></div>
+</section>
+
+<section class="page page-10">
+   <div class="tx1"><img src="images/page10_tx1.png"></div>
+   <div class="start_btn"><img src="images/code2.png"></div>
+   <div class="tx2"><img src="images/page10_tx2.png"></div>
+</section>
+
+</div>
+<script src="js/pages.js"></script>
+<script src="js/job.js"></script>
+
+</body></html>
+
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+
+wx.config({
+    debug: false,
+    appId: '<?php echo $signPackage["appId"];?>',
+    timestamp: <?php echo $signPackage["timestamp"];?>,
+    nonceStr: '<?php echo $signPackage["nonceStr"];?>',
+    signature: '<?php echo $signPackage["signature"];?>',
+    jsApiList: [
+      // 所有要调用的 API 都要加到这个列表中
+      "onMenuShareTimeline",
+      "openLocation",
+      "getLocation",
+      "onMenuShareAppMessage"
+    ]
+  });
+
+
+wx.ready(function(){
+	var shareData = {
+	    title: '速美,关注即可免费冲印LOMO卡',
+	    desc: '江浙沪地区每天前100名0元包邮到家,两日内送达!',
+	    link: 'http://wx.loyoo.co/passport/ht/oauth_lomo.php',
+	    imgUrl: 'http://wx.loyoo.co/passport/image/z.jpg'
+	  };
+
+	//2. 分享接口
+  	// 2.1 监听“分享给朋友”，按钮点击、自定义分享内容及分享结果接口
+    wx.onMenuShareAppMessage(shareData);
+	//2.2 监听“分享到朋友圈”按钮点击、自定义分享内容及分享结果接口
+    wx.onMenuShareTimeline(shareData);
+	//2.3 监听“分享到QQ”按钮点击、自定义分享内容及分享结果接口
+    wx.onMenuShareQQ(shareData);
+  	// 2.4 监听“分享到微博”按钮点击、自定义分享内容及分享结果接口
+    wx.onMenuShareWeibo(shareData);
+});
+
+</script>

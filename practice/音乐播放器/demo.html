@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>音乐播放器</title>
+	<style type="text/css">
+		*{padding: 0px;margin: 0px;}
+		body{
+			width: 100%;height: 100%;background: url("images/bg.jpg");background-size:cover;/*自适应*/
+		}
+		.wrap{
+			width:536px;height: 534px;background: url("images/yybw.png"),url("images/bg1.png") no-repeat center center;position: absolute;top:0;left:0;right: 0;bottom:0;margin:auto;/*定位紊乱，使其居中*/
+		}
+		.wrap .play{
+			position:absolute;top: 60px;left: 60px; 
+		}
+		.spin{animation:spin 4s linear infinite;}/*点击播放按钮时才可播放*/
+		/*调用CSS3动画，动画名，运行多长时间，以什么样速度：匀速，运行次数3或无数次*/
+		.wrap .yy{
+			width: 300px;height: 300px;position: absolute;top:0;left:0;right: 0;bottom:0;margin:auto;
+		}
+		.wrap .yy p{
+			color:#fff;text-align:center;
+		}
+		.wrap .yy p.sn{
+			font-size: 40px;color: #3cc;line-height: 50px;
+		}
+		.wrap .yy img.star{
+			border-radius: 50%;margin-left:90px;margin-top:30px;
+		}
+		.wrap .yy .btn{
+			position:relative; top:-35px; left:-95px;
+		}
+		a{text-decoration:none;color:#fff;font-size:20px;display:block;fonr-weight:bold;
+		float:left;text-align:center; width:48%; padding-top:40px;
+		}
+		.wrap .yy .ht{background:url("images/ht.png") no-repeat;background-position:60px 5px;/*背景定位*/}
+		.wrap .yy .next{background:url("images/next.png") no-repeat;background-position:60px 5px;}
+
+		/*css3 动画*/
+		@keyframes spin/*动画名*/ {
+			from{transform:rotate(0deg);}/*旋转开始*/
+			to{transform:rotate(360deg);}/*旋转结束*/
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<div class="play">
+			<img src="images/yyjd.png" />
+		</div>
+		<div class="yy">
+			<p class="gn">龚玥</p>
+			<p class="sn">母亲</p>
+			<img class="star" src="images/0.jpg" width="120px" height="120px" />
+			<img class="btn" src="images/play.png" />
+			<a class="ht">好听</a> <a class="next">切歌</a>
+			<audio id="music" src="mp3/母亲.mp3"></audio><!--歌曲-->
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript">
+	var gm=["龚玥","张信哲","邓紫棋","Beyond","陈奕迅","谭咏麟","周华健","汪峰"];//歌手
+	var sn=["母亲","白月光","你把我灌醉","海阔天空","因为爱情","讲不出再见","让我欢喜让我忧","光明"];//歌曲
+	var mark=true;//标记
+	var i = 0;//控制歌曲数量
+	//点击按钮的时候 开启音乐
+	$(".btn").click(function(){
+		//如果音乐在播放，那么暂停
+		if(mark){
+			$("#music").get(0).play();
+			$(this).attr("src","images/pause.png");
+			$(".play").addClass("spin");
+			$(".star").addClass("spin");
+			mark=false;
+		}else{
+			$("#music").get(0).pause();
+			$(this).attr("src","images/play.png");
+			$(".play").removeClass("spin");
+			$(".star").removeClass("spin");
+			mark=true;
+		}
+
+	});
+	//切歌
+	$(".next").click(function(){
+		i++;
+		if(i>7){
+			i=0;
+		}
+		$("p.gn").text(gm[i]);//修改歌手名字
+		$("p.sn").text(sn[i]);//修改歌手名字
+		$(".star").attr("src","images/"+i+".jpg")//修改头像
+		$("#music").attr("src","mp3/"+sn[i]+".mp3")//修改歌曲
+		$("#music").get(0).play();
+		$(".btn").attr("src","images/pause.png");
+		$(".play").addClass("spin");
+		$(".star").addClass("spin");
+		mark=false;
+	});
+</script>
+</html>

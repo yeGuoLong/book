@@ -1,0 +1,173 @@
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1.0">
+		<title>6.1福利日，玩爆儿童节</title>
+		<link rel="stylesheet" type="text/css" href="./css/base.css" />
+		<link rel="stylesheet" type="text/css" href="./css/style.css" />
+		<script type="text/javascript" src="./js/jquery-2.1.4.js"></script>
+	</head>
+
+	<body style="background: #c0f6f4;">
+		<div class="childrensDay">
+			<div class="bg">
+				<img class="childrensDay_bg" src="./images/partner_bg.png" />
+				<!-- 转盘开始 -->
+				<!-- <img class="zhuan_bg" src="./images/zhuan_bg.png" /> -->
+				<img class="zhuan_bg_btn" src="./images/zhuan_bg_btn.png" r="1" />
+				<img class="tan_bg" src="./images/tan_bg.png" />
+				<img class="tan_close_btn" src="./images/tan_close_btn.png" />
+				<div class="tan_pan"></div>
+				<div class="tan_con">
+					<p class="tan_con_title">恭喜您抽中</p>
+					<p class="tan_con_name"></p>
+					<p class="tan_con_quan">&nbsp;&nbsp;<span class="tan_con_txt"></span></p>
+					<p class="tan_con_btn">长按即可复制</p>
+				</div>
+				
+				<div id="lottery">
+					<table class="zhuan_items" border="0" cellpadding="0" cellspacing="0">
+						<tr>
+							<td class="lottery-unit lottery-unit-0"><img src="./images/zhuan_01.png"></td>
+							<td class="lottery-unit lottery-unit-1"><img src="./images/zhuan_02.png"></td>
+							<td class="lottery-unit lottery-unit-2"><img src="./images/zhuan_03.png"></td>
+							<td class="lottery-unit lottery-unit-3"><img src="./images/zhuan_04.png"></td>
+						</tr>
+						<tr>
+							<td class="zhuan_btn" colspan="2" style="cursor: pointer;"></td>
+						</tr>
+						
+					</table>
+				</div>
+
+				<div class="btns">
+					<a href="rules.html?id=<?php echo time(); ?>"><img class="btn_rules" src="./images/btn_rules.png" /></a>
+					<img class="btn_zhongJiang" src="./images/btn_zhongJiang.png" />
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var zjbh;
+		var quan_name = "";
+		var quan_ma ="";
+		var lottery = {
+			index: -1,
+			count: 0,
+			timer: 0,
+			speed: 50,
+			times: 0,
+			cycle: 10,
+			prize: -1,
+			init: function(id) {
+				if ($("#" + id).find(".lottery-unit").length > 0) {
+					$lottery = $("#" + id);
+					$units = $lottery.find(".lottery-unit");
+					this.obj = $lottery;
+					this.count = $units.length;
+					$lottery.find(".lottery-unit-" + this.index).addClass("active");
+				};
+			},
+			roll: function() {
+				var index = this.index;
+				var count = this.count;
+				var lottery = this.obj;
+				$(lottery).find(".lottery-unit-" + index).removeClass("active");
+				index += 1;
+				if (index > count - 1) {
+					index = 0;
+				};
+				$(lottery).find(".lottery-unit-" + index).addClass("active");
+				this.index = index;
+				return false;
+			},
+			stop: function(index) {
+				this.prize = index;
+				return false;
+			}
+		};
+		//券码显示
+		var quan_show = function() {
+			$('p.tan_con_name').html(quan_name);
+			$('span.tan_con_txt').html(quan_ma);
+			$('.bg img.tan_bg,.bg .tan_con,.bg .tan_con p,.bg .tan_con span').show();
+		};
+		//弹窗显示
+		var tan_show = function() {
+				if (zjbh === 0) { //30M电信流量
+					quan_show();
+				} else if (zjbh === 1) { 
+					quan_show();
+				} else if (zjbh === 3) {
+					quan_show();
+				
+				} else if (zjbh === 4) {
+					quan_show();
+				} else if (zjbh === 6) { 
+					quan_show();
+				}
+			}
+			//弹窗关闭
+		var tanClose = function() {
+				$('.bg img.tan_bg,.bg .tan_con').hide();
+			}
+			//中奖滚动
+		function roll() {
+			lottery.times += 1;
+			lottery.roll();
+			if (lottery.times > lottery.cycle + 10 && lottery.prize == lottery.index) {
+				clearTimeout(lottery.timer);
+				lottery.prize = -1;
+				lottery.times = 0;
+				click = false;
+				//转盘停留后操作 显示中奖内容 中奖码
+				setTimeout(function() {
+					tan_show(); //调用弹窗显示函数
+				}, 600);
+			} else {
+				if (lottery.times < lottery.cycle) {
+					lottery.speed -= 10;
+				} else if (lottery.times == lottery.cycle) {
+					//控制指针停留位置  zjbh为后台传的奖品编号
+					var index = zjbh;
+					lottery.prize = index;
+				} else {
+					if (lottery.times > lottery.cycle + 10 && ((lottery.prize == 0 && lottery.index == 7) || lottery.prize == lottery.index + 1)) {
+						lottery.speed += 110;
+					} else {
+						lottery.speed += 20;
+					}
+				}
+				if (lottery.speed < 100) {
+					lottery.speed = 100;
+				};
+				// console.log(lottery.times+'^^^^^^'+lottery.speed+'^^^^^^^'+lottery.prize);
+				lottery.timer = setTimeout(roll, lottery.speed);
+			}
+			return false;
+		}
+
+		var click = false;
+		var guanZhu;
+		var chouJiang;
+		window.onload = function() {
+			lottery.init('lottery');
+			//抽奖按钮点击事件
+			$("img.zhuan_bg_btn").click(function() {
+				if (click) {
+					return false;
+				} else {
+					zjbh = parseInt(3);//后台传入中奖编号
+					
+					quan_name = 'data.msg' ;
+					quan_ma = quan_name + "</br>"+ 'data.password';
+					lottery.speed = 100;
+					roll();
+				}
+			});
+		};
+
+	</script>
+
+</html>

@@ -1,0 +1,166 @@
+<!--文档声明为 html（最新html5）-->
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面编码格式为国际编码（utf-8）还有一种中文编码（gbk/gb2312）-->
+		<meta charset="UTF-8">
+		<!--网页三要素-->
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="Description" content="描述">
+		<title>网页的标题</title>
+	<style type="text/css">
+		body{background:#000;
+			margin:0px;
+			font-family:"微软雅黑";}
+		#phone{
+			position:relative;
+			width:322px;
+			height:640px;
+			margin:50px auto;
+		}
+		.top{width:322px;
+			height:42px;
+			background:url("images/phone_top.png");}
+		.info{
+			width:322px;
+			height:20px;
+			background:url("images/top.jpg");
+		}
+		.title{
+			width:322px;
+			height:40px;
+			border:1px solid #fff;
+			border-top:0;
+			border-bottom:0;
+			box-sizing:border-box;
+			color:#fff;
+			font-size:24px;
+			text-align:center;
+			line-height:40px;
+		}
+		.txt{
+			width:322px;
+			height:490px;
+			border:1px solid #fff;
+			border-top:0;
+			border-bottom:0;
+			box-sizing:border-box;
+			background:url("images/psb.jpeg");
+			background-size:cover;
+			background-position:center;
+			color:#fff;
+			text-align:center;
+			line-height:20px;
+			}
+		.txt p{margin:0px;}
+		.footer{
+			width:322px;
+			height:47px;
+			background:url("images/phone_bottom.png");
+			font-size:24px;
+		}
+		#btn{
+			position:absolute;
+			left:137px;
+			bottom:100px;
+			width:50px;
+			height:50px;
+			background:url("images/normalmusic.svg");
+			background-size:cover;
+		}
+		
+		.rotate{
+			animation:rot 2s linear infinite;/*动画名称 动画执行时间 匀速运动 无限重复*/
+		}
+
+		@keyframes rot{
+			from{
+				transform:rotate(0deg);
+			}
+			to{
+				transform:rotate(360deg);
+			}
+		}/*CSS动画*/
+	</style>
+
+	</head>
+	<body>
+		<div id="phone">
+			<div class="top"></div>
+			<div class="info"></div>
+			<div class="title">相伴潭州</div>
+			<div class="txt"></div>
+			<div class="footer"></div>
+			<div id="btn"></div>
+		</div>
+		<textarea id="text" style="display:none">
+			[00:00.60]相伴潭州——潭州学院校歌（作词/编曲/演唱：潭州学院）
+			[00:01.55]歌词制作 
+			[00:02.25]古潭州   源流长     书院镇潇湘
+			[00:07.26]到如今    薪火旺    再铸新辉煌
+			[00:12.86]跨深壑    品类广    传道授业忙
+			[00:17.96]攀险峰    传奇唱     续书新篇章
+			[00:23.37]风雨同舟  江湖共闯  劈破万里浪
+			[00:28.50]相伴有你   日月光芒  将前途照亮
+			[00:33.97]夙兴夜寐   心念联网   只为学员想
+			[00:39.32]相伴有你   携手图强   奋斗在路上
+			[00:46.53]筑平台   伟业昌   悲欢众担当
+			[00:56.42]虹之玉   各一方   甘苦齐分尝
+			[01:06.30]风雨同舟   江湖共闯   劈破万里浪
+			[01:12.43]相伴有你   日月光芒   将前途照亮
+			[01:18.00]夙兴夜寐   心念联网   只为学员想
+			[01:23.23]相伴有你   携手图强   奋斗在路上
+			[01:28.66]相伴有你   携手图强   奋斗在路上
+			[01:36.67]
+		</textarea>
+		<audio src="music/10.mp3" id="myMusic"></audio>
+	</body>
+	<script type="text/javascript">
+	//dom树 document
+	var oBtn = document.getElementById("btn");//在文档中通过ID名获取该元素
+	var myMusic = document.getElementById("myMusic");
+	var onOff = true;//做开关 布尔值 真或假 false
+	oBtn.onclick = function(){
+		if (onOff)//if括号里面的内容会被隐式转换成布尔值 如果返回true则执行第一个语句，如果返回false 则执行else中的语句
+		{
+			this.className = "rotate";
+			myMusic.play();//音乐播放
+			onOff = false;
+ 		}else{
+			this.className = "";
+			myMusic.pause();//音乐暂停
+			onOff = true;
+		}	
+	}
+	var text = document.getElementById("text");
+	var lrc = text.value.split("[");//分割每一句歌词  分割后以数组的形式保存
+	var html = "";
+	for (var i = 0;i<lrc.length ;i++  )//for循环遍历  1.声明变量 2.设置条件控制循环次数 3.执行 4.改变变量值  接着执行第二步操作直到条件不允许为止
+	{
+		var arr = lrc[i].split("]");
+		var times = arr[0].split(".");
+		var time = times[0].split(":");
+		var ms = time[0]*60+time[1]*1;
+		if (arr[1])
+		{
+			html += "<p id="+ms+">"+arr[1]+"</p>";
+		}
+
+	}
+	var oTxt = document.getElementsByClassName("txt")[0];
+	oTxt.innerHTML = html;//将歌词放到txt元素节点当中
+	var oP = document.getElementsByTagName("p");
+
+	myMusic.addEventListener("timeupdate",function(){
+		var curTime=parseInt(this.currentTime);//获取当前时间
+		if (document.getElementById(curTime))
+		{
+			for (var i = 0;i<oP.length ;i++ )
+			{
+				oP[i].style.color = "#fff";
+			}
+			document.getElementById(curTime).style.color = "red";
+		}
+	});//监听歌曲播放进度
+	</script>
+</html>

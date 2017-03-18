@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	*{margin:0px;padding:0px;}
+	body{
+		background: url(images/bg_04.jpg) top center;
+	}
+	.login{
+		width:600px;
+		height:370px;
+		background:rgba(255,255,255,0.5);
+		margin:0px auto;
+		box-shadow:0px 0px 5px #000;
+		position:absolute;
+	}
+	.login h2{
+		height:60px;
+		color:#606060;
+		font-size:20px;
+		font-weight:100;
+		line-height:60px;
+		text-indent:35px;
+		border-bottom:1px solid #ddd;
+	}
+	.login ul{
+		padding-top:30px;color:#454545;font-size:14px;
+	}
+	.login ul li{
+		list-style:none;
+		margin-bottom:20px;
+	}
+	.login ul li label{
+		width:160px;display:inline-block;text-align:right;
+	}
+	.login ul li .txt{
+		width:300px;height:40px;border:0px;margin-left:10px;text-indent:10px;
+	}
+	.login .reg{margin-top:50px;width:100%;text-align:center;}
+	.login .reg .btn{
+		width:240px;
+		height:40px;
+		background:url(images/step2_jh.jpg);
+		color:#fff;font-family:"微软雅黑";font-size:18px;border:0;cursor:pointer;
+	}
+</style>
+<body>
+	<div class="login">
+		<h2>会员注册</h2>
+		<ul>
+			<li>
+				<label>账户名称：</label>
+				<input type="text" class="txt" placeholder="请输入账号" />
+			</li>
+			<li>
+				<label>设置密码：</label>
+				<input type="password" class="txt" />
+			</li>
+			<li>
+				<label>确认密码：</label>
+				<input type="password" class="txt" />
+			</li>
+		</ul>
+		<div class="reg">
+			<input type="submit" value="立即注册" class="btn"/>
+		</div>
+	</div>
+</body>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript">
+		auto();
+		$(window).resize(function(){
+			auto();
+		});
+		function auto(){
+			var L=($(document).width()-$(".login").width())/2;
+			var T=($(document).height()-$(".login").height())/2;
+			$(".login").css({left:L,top:T});
+		}
+	</script>
+</html>

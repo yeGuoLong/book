@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>圣诞换背景</title>
+	<style type="text/css">
+		*{
+			margin: 0px;padding:0px;
+		}
+		html{
+			height: 100%
+		}
+		body{
+			background: url("images/1.jpg") no-repeat;
+			background-size:100% 100%;/*背景尺寸*/height: 100%;
+		}
+		#nav{
+			width:100%;height: 100px;background: rgba(0,0,0,0.5);
+			padding: 20px;
+			position: relative;
+			display: none;
+		}
+		#nav ul{
+			width: 900px;height: 80px;margin: 10px auto;
+		}
+		#nav ul li{
+			list-style:none;
+			width: 135px;height: 80px;
+			background: blue;
+			float: left;
+			border: 1px solid #fff;
+			margin-right: 10px;
+		}
+		.btn{
+			width: 50px;height: 50px;background: url("images/upseek.png") no-repeat;
+			position: absolute;
+			top: 0px;right: 0px;
+		}
+		.btn:hover{
+			background-position: 0px -66px;
+		}
+	</style>
+</head>
+<body>
+	<div id="nav">
+		<ul>
+			<li><!--块级元素，占满一行-->
+				<img src="images/1.jpg" width="135px" height="80px" />
+			</li>
+			<li>
+				<img src="images/2.jpg" width="135px" height="80px"/>
+			</li>
+			<li>
+				<img src="images/3.jpg" width="135px" height="80px"/>
+			</li>
+			<li>
+				<img src="images/4.jpg" width="135px" height="80px"/>
+			</li>
+			<li>
+				<img src="images/5.jpg" width="135px" height="80px"/>
+			</li>
+			<li>
+				<img src="images/6.jpg" width="135px" height="80px"/>
+			</li>
+		</ul>
+	</div>
+	<div class="btn">
+		
+	</div>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/snow.js"></script>
+
+	<script type="text/javascript">
+		$.fn.snow({
+			minSize:5,
+			maxSize:100,
+			newOn:500,
+			flakeColor:"green"
+		});
+
+		//var mark = true;
+		$("div.btn").click(function(){
+			//$("#nav").show();
+			/*if (mark)
+			{
+				$("#nav").slideDown();//向下滑动显示
+				mark = false;
+			}else{
+				$("#nav").slideUp();//向上滑动隐藏
+				mark = true;
+			}*/
+			$("#nav").slideToggle("slow");//自动判断nav的显隐性
+		});
+		$("ul li").click(function(){
+
+			var src = $(this).children().attr("src");//获取img标签的属性值
+			$("body").css("background-image","url("+src+")")
+		});
+	</script>
+</body>
+</html>

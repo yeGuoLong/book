@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!--声明当前页面的编码格式 国际编码 UTF-8 中文编码 GBK-->
+    <meta charset="UTF-8">
+    <!--声明当前页面的三要素-->
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <title>please enter your title</title>
+    <!--样式css 修饰 衣服 化妆品-->
+<style type="text/css">
+*{margin:0px;padding:0px;}
+#box{
+	width:1000px;
+	margin:auto;
+}
+#box ul li{
+	list-style:none;
+	width:225px;
+	background:#fff;
+	float:left;
+	padding:5px;
+	margin:5px;
+	box-shadow:0 0 5px #333;
+}
+#box ul li img{
+	width:225px;
+	transition:1s;/*CSS3渐变动画*/
+}
+</style>
+</head>
+<body>
+	<div id="box">
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+	<script type="text/javascript" src="../../js/jquery.min.js"></script>
+	<script type="text/javascript">
+		var arr = [
+			{src : "images/1.png"},
+			{src : "images/2.jpg"},
+			{src : "images/3.jpg"},
+			{src : "images/4.jpg"},
+			{src : "images/5.jpg"},
+			{src : "images/6.jpg"},
+			{src : "images/7.jpg"},
+			{src : "images/8.jpg"},
+			{src : "images/9.jpg"},
+			{src : "images/10.jpg"},
+			{src : "images/11.jpg"},
+			{src : "images/12.jpg"}
+		];//数组  arr[0].src
+		//alert(arr[0].src);
+		
+		var i = 0;//初始化一个变量
+		//alert(arr.length);
+		function create(){
+			var oDiv = document.createElement("div"),
+			oImg = new Image();//新建一个图片对象
+			oImg.src = arr[i%arr.length].src;
+			oImg.style.cssText = "opacity:0;transform:scale(0)";//初始样式
+			oDiv.appendChild(oImg);
+			getList($("#box ul li")).append(oDiv);
+			(function(oImg){
+				setTimeout(function(){
+					oImg.style.cssText = "opacity:1;transform:scale(1)";
+				},100);//倒序定时器
+			})(oImg)//函数自执行
+		}
+		function getList(obj){
+			var oLi,//定义一个变量来保存符合对应条件的li并返回出去 
+			length = obj.length,//获取li的列数
+			h = Infinity;//无限值
+			for (var i=0;i<length;i++)
+			{
+				if (obj.eq(i).height()<h)
+				{
+					h = obj.eq(i).height();
+					oLi = obj.eq(i);
+				}
+			}
+			return oLi;
+		}
+	var sum;
+	function upload(){
+		if (i<12)
+		{
+			for (;i<12 ;i++ )
+			{
+				create();
+			}
+		}else{
+			sum = i;
+			for (;i<sum+3;i++ )
+			{
+				create();
+			}
+		}
+	}
+
+	upload();
+	var scrollH = "";//文档高度
+	var srollT = "";//滚动条高度
+
+	$(function(){
+		var _height = $(window).height();//获取可视区域的高度
+		$(window).scroll(function(){
+			scrollH = document.body.scrollHeight;//获取文档的高度
+			srollT = document.body.scrollTop;//滚动条的高度
+			if (_height+srollT+50 > scrollH)
+			{
+				upload();
+			}
+		});//滚动条事件
+	});
+	</script>
+</body>
+</html>

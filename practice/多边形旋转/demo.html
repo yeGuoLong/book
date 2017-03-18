@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>多边形放大特效</title>
+	<style type="text/css">
+		*{padding:0px;margin:0px;}
+		body{
+			background:url(images/bodyBg.jpg);
+		}
+		#wrap{width:980px;margin:100px auto;}
+		#wrap ul li{width:180px;height:105px;margin:30px 5px;background:rgba(0,0,0,0.7);list-style:none;float:left;
+			position:relative;}
+		#wrap ul li:nth-child(9n+6){margin-left:100px;}
+		#wrap ul li:before{
+			content:"";
+			position:absolute;
+			background:rgba(0,0,0,0.7);
+			width:180px;
+			height:105px;
+			transform:rotate(60deg);/*css3旋转角度与方向*/
+		}
+		#wrap ul li:after{
+			content:"";
+			position:absolute;
+			background:rgba(0,0,0,0.7);
+			width:180px;
+			height:105px;
+			transform:rotate(-60deg);
+			z-index:1;
+		}
+		#wrap ul li img{
+			position:absolute;
+			top:0;left:0;right:0;bottom:0;
+			margin:auto;
+			z-index:2;
+			transition:all 0.8s;/*CCS3过渡时间*/
+		}
+		#wrap ul li img:hover{
+			transform:scale(1.5) rotate(360deg);/*CSS3放大和旋转角度*/
+		}
+	</style>
+
+</head>
+<body>
+	<div id="wrap">
+		<ul>
+			<li><img src="images/1.png" /></li>
+			<li><img src="images/2.png" /></li>
+			<li><img src="images/3.png" /></li>
+			<li><img src="images/4.png" /></li>
+			<li><img src="images/5.png" /></li>
+			<li><img src="images/6.png" /></li>
+			<li><img src="images/7.png" /></li>
+			<li><img src="images/8.png" /></li>
+			<li><img src="images/9.png" /></li>
+			<li><img src="images/10.png" /></li>
+			<li><img src="images/11.png" /></li>
+			<li><img src="images/12.png" /></li>
+			<li><img src="images/13.png" /></li>
+			<li><img src="images/14.png" /></li>
+	</ul>
+	</div>
+</body>
+</html>

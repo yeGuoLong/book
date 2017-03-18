@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>3D爱心</title>
+	<link rel="stylesheet" type="text/css" href="../css/mobile_style.css">
+	<style type="text/css">
+		body{}
+		.cube{position: relative;width: 200px;height: 200px;margin: 300px auto;transform-style: preserve-3d;/*设置3D环境*//*perspective: 1000px;镜深 800-1000*/transform: translateZ(-100px) rotateY(0deg);}
+		.cube:hover{animation: rot 5s linear;}
+		@keyframes rot{to{transform: translateZ(-100px) rotateY(360deg);}}
+		.cube div{position: absolute;width: 200px;height: 200px;border: 2px solid red;left: 0;top: 0;}
+		.cube div:nth-child(1){left: 0;top: -200px;transform-origin:bottom;/*旋转中心*/transform: rotateX(90deg);}
+		.cube div:nth-child(2){left: 0;top: 200px;transform-origin:top;/*旋转中心*/transform: rotateX(-90deg);}
+		.cube div:nth-child(3){left: -200px;top: 0;transform-origin:right;/*旋转中心*/transform: rotateY(-90deg);}
+		.cube div:nth-child(4){left: 200px;top: 0;transform-origin:left;/*旋转中心*/transform: rotateY(90deg);}
+		.cube div:nth-child(6){transform: translateZ(-200px);/*位移*/}
+	</style>
+</head>
+<body>
+	<div class="cube">
+		<div>上</div>
+		<div>下</div>
+		<div>左</div>
+		<div>右</div>
+		<div>前</div>
+		<div>后</div>
+	</div>
+</body>
+</html>

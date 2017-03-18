@@ -1,0 +1,90 @@
+		.childrensDay{margin: 0 auto;width: 100%;height: 100%;max-width: 640px;min-width: 320px;overflow: hidden;}
+		.bg{position: relative;}
+		.bg img.childrensDay_bg{width: 100%;top: 0;left: 0;position: relative;}
+		table, td{margin:0;padding:0;-webkit-text-size-adjust: none;border: 0;}
+		.bg img.zhuan_bg{width:81.875%; position: absolute;top: 9.48%;left: 9.5%;}
+		.bg img.zhuan_bg_btn{cursor: pointer;z-index: 1;width:40.9375%; position: absolute;top: 41.8%;left: 31%;-webkit-animation:FromSmallToLarge 1.3s 1.8s ease both;-moz-animation:FromSmallToLarge 1.3s 1.8s ease both;-o-animation:FromSmallToLarge 1.3s 1.8s ease both;animation:FromSmallToLarge 1.3s 1.8s ease both;-webkit-animation-iteration-count:infinite;-moz-animation-iteration-count:infinite;-o-animation-iteration-count:infinite;animation-iteration-count:infinite;}
+		/****弹窗**/
+		.bg img.tan_bg{width:100%; position: absolute;top: 13.48%;z-index: 999;}
+		.bg .tan_con,.bg .tan_off,.bg .tan_over,.tan_liuLiang,.tan_guanZhu,.tan_liuLiang_over{width:78.125%; position: absolute;top: 40.697%;left: 10.5%;z-index: 999;}
+		.bg .tan_con,.tan_off,.bg .tan_over,.tan_liuLiang,.tan_guanZhu,.tan_liuLiang_over,.bg p,.bg span,.bg h4{text-align: center;font-size: 20px;font-weight: 500;}
+		.bg p.tan_con_title,p.tan_off_title,p.tan_over_title{color: #fff;}
+		.bg p.tan_con_name{margin-bottom: 2%;}
+        
+        .bg p.tan_off_name,p.tan_off_title,.bg p.tan_over_name,p.tan_over_title{margin-top: 5%;}
+		.bg .tan_con p.tan_con_btn{margin-top: 2%;background: #fac55e;width:40.75%;display: inline-block;}
+		.bg .tan_liuLiang p.tan_con_phone_btn,.bg .tan_liuLiang_over p.tan_con_phone_over_btn{margin-top: 2%;background: #fac55e;width:13%;display: inline-block;font-weight: 400;}
+		.bg img.tan_close_btn{width: 6.84375%;position: absolute;top: 16.3%;left: 79.78125%;z-index: 999;}
+		.bg .tan_guanZhu p.tan_guanZhu_txt{width: 68%;text-align: center;display: inline-block;}
+		.bg .tan_guanZhu img.tan_guanZhu_pic{width: 25%;position: absolute;left: 37.5%;top: 100%;}
+		.bg img.tan_bg,.bg .tan_con,.tan_off,.tan_guanZhu,.bg p,.bg h4,.bg span,.bg img.tan_close_btn,.tan_liuLiang,input.tan_con_phone,img.tan_guanZhu_pic,.tan_liuLiang_over{display: none;}
+		.bg .tan_con_phone_over_btn{display: inline-block;}
+		.tan_pan{display: none; width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; background: rgba(0,0,0,0.6);z-index: 998;}
+		/****转盘**/
+		#lottery{width:81.875%; position: absolute;top: 28.48%;left: 10.5%;}
+		#lottery table.zhuan_items{width: 100%;}
+		#lottery table td{width: 25%;vertical-align:middle;}
+		#lottery table td img{display: block;width: 100%;}
+		#lottery table td.lottery-unit-0{background: #8671fe;}
+		#lottery table td.lottery-unit-1{background: #ea0002;}
+		#lottery table td.lottery-unit-2{background: #8ed9f9;}
+		#lottery table td.lottery-unit-3{background: #fef9b8;}
+		#lottery table td.lottery-unit-4{background: #21d9cf;}
+		#lottery table td.lottery-unit-5{background: #fa598f;}
+		#lottery table td.lottery-unit-6{background: #7efffc;}
+		#lottery table td.lottery-unit-7{background: #ffd6ec;}
+		#lottery table td.lottery-unit-8{background: #c88c19;}
+		#lottery table td.lottery-unit-9{background: #fdde2e;}
+		#lottery table td.active{background-color:chartreuse;}
+		.bg .zhuanPan ul li img.zhuan_btn{position: absolute;width: 41.25%; top: 13.977%;left: 30.1%;cursor: pointer;}
+		.bg .btns .btn_rules{position: absolute;top: 72.17%;left: 17.1875%;width: 27.5%;cursor: pointer;}
+		.bg .btns .btn_zhongJiang{position: absolute;top: 72.17%;left: 57.8125%;width: 27.5%;cursor: pointer;}
+		/***商品***/
+		.bg .products ul li img.product_items{width: 40%;position: absolute;}
+		.bg .products ul li img.product_01{top: 33%;left: 7.5625%;}
+		.bg .products ul li img.product_02{top: 33%;left: 53%;}
+		.bg .products ul li img.product_03{top: 46.52%;left: 7.5625%;}
+		.bg .products ul li img.product_04{top: 46.52%;left: 53%;}
+		.bg .products ul li img.product_05{top: 60.17%;left: 7.5625%;}
+		.bg .products ul li img.product_06{top: 60.17%;left: 53%;}
+		.bg .products ul li img.product_07{top: 74.08%;left: 7.5625%;}
+		.bg .products ul li img.product_08{top: 74.08%;left: 53%;}
+		.bg .footer img.wx_pic{width: 26.25%; position: absolute;left: 36.875%;bottom: 3.782%;}
+		.bg .footer .btn_more{position: absolute;bottom: 1%;left: 7.8125%;width: 84.0625%;cursor: pointer;}
+		/*从小到大，动画效果*/
+		@-webkit-keyframes FromSmallToLarge{
+		0%{-webkit-transform:scale(1)}
+		50%{-webkit-transform:scale(1.02)}
+		100%{-webkit-transform:scale(1)}
+		}
+		@-moz-keyframes FromSmallToLarge{
+		0%{-moz-transform:scale(1)}
+		50%{-moz-transform:scale(1.02)}
+		100%{-moz-transform:scale(1)}
+		}
+		@-o-keyframes FromSmallToLarge{
+		0%{-o-transform:scale(1)}
+		50%{-o-transform:scale(1.02)}
+		100%{-o-transform:scale(1)}
+		}
+		@keyframes FromSmallToLarge{
+		0%{transform:scale(1)}
+		50%{transform:scale(1.02)}
+		100%{transform:scale(1)}
+		}
+		@media only screen and (max-width:480px){
+          .bg .tan_con,.bg p,.bg span{font-size:14px !important;}
+          .bg .tan_guanZhu img.tan_guanZhu_pic{width: 25%;position: absolute;left: 37.5%;top: 92%;}
+        }
+        @media only screen and (max-width:360px){
+          .bg .tan_con,.bg p,.bg span{font-size:12px !important;}
+          .bg .tan_guanZhu img.tan_guanZhu_pic{width: 25%;position: absolute;left: 37.5%;top: 92%;}
+        }
+        @media only screen and (max-width:320px){
+          .bg .tan_con,.bg p,.bg span{font-size:12px !important;}
+          .bg img.tan_bg{width:100%; position: absolute;top: 14.48%;z-index: 999;}
+          .bg .tan_con p.tan_con_btn{margin-top: 2%;background: #fac55e;width: 40.75%;display: inline-block;}
+          .bg .tan_guanZhu{width:78.125%; position: absolute;top: 40%;left: 10.5%;z-index: 999;}
+          .bg img.tan_close_btn{width: 7.84375%;position: absolute;top: 16.3%;left: 79.78125%;z-index: 999;}
+          .bg .tan_guanZhu img.tan_guanZhu_pic{width: 25%;position: absolute;left: 37.5%;top: 92%;}
+        }

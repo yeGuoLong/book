@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>css常用效果</title>
+	<style type="text/css">
+	/*单位
+	em:相对单位长度，相对于父元素的字体大小font-size:16px    1em = 16px;
+	rem：相对单位长度，相对于html的font-size:125px    1rem = 125px;
+	 */
+
+	/*图片放大缩小效果开始*/
+	/*调用*/
+	img{-webkit-animation:FromSmallToLarge 1.3s 1.8s ease both;-moz-animation:FromSmallToLarge 1.3s 1.8s ease both;-o-animation:FromSmallToLarge 1.3s 1.8s ease both;animation:FromSmallToLarge 1.3s 1.8s ease both;-webkit-animation-iteration-count:infinite;-moz-animation-iteration-count:infinite;-o-animation-iteration-count:infinite;animation-iteration-count:infinite}
+
+	/*从小到大，动画效果*/
+	@-webkit-keyframes FromSmallToLarge{
+	0%{-webkit-transform:scale(1)}
+	50%{-webkit-transform:scale(1.02)}
+	100%{-webkit-transform:scale(1)}
+	}
+	@-moz-keyframes FromSmallToLarge{
+	0%{-moz-transform:scale(1)}
+	50%{-moz-transform:scale(1.02)}
+	100%{-moz-transform:scale(1)}
+	}
+	@-o-keyframes FromSmallToLarge{
+	0%{-o-transform:scale(1)}
+	50%{-o-transform:scale(1.02)}
+	100%{-o-transform:scale(1)}
+	}
+	@keyframes FromSmallToLarge{
+	0%{transform:scale(1)}
+	50%{transform:scale(1.02)}
+	100%{transform:scale(1)}
+	}
+	/*图片放大缩小效果结束*/
+
+	/*内容上下居中开始*/
+	p{
+	position: relative;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+	transform: translateY(-50%);
+	}
+	/*内容上下居中结束*/
+	</style>
+</head>
+<body>
+	
+</body>
+</html>

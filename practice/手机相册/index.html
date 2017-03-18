@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1.0" />
+	<title>手机相册练习</title>
+	<link rel="stylesheet" type="text/css" href="../../css/mobile_style.css">
+	<script type="text/javascript">
+		//动态修改页面html的字体大小
+		document.getElementsByTagName('html')[0].style.fontSize = document.documentElement.clientWidth/3 + 'px';
+	</script>
+	<style type="text/css">
+		body{background: #333;font-size: 0.15rem;}
+		header{height: 0.45rem;line-height: 0.45rem;color: #fff;text-align: center;position: relative;}
+		a{text-decoration: none;color: #fff;}
+		.btn{position: absolute;top: 0.15rem;width: 0.5rem;height: 0.25rem;line-height: 0.25rem;box-shadow: 0 0 5px #000;border-radius: 5px;}
+		a.btn:nth-child(1){left: 15px;display: none;}
+		a.btn:nth-child(2){right: 15px;}
+		section{position: relative;}
+		section ul li{box-sizing: border-box;/*css3盒模型解析*/width: 1rem;height: 1rem;border: 1px solid #ccc;position: absolute;background-size: 100% 100%;background-repeat: no-repeat;transition: left 0.5s,top 0.5s;}
+		footer{position: fixed;left: 0;bottom: 0;height: 0.45rem;line-height: 0.45rem;text-align: center;background: #333;}
+		footer a{width: 1.5rem;float: left;box-sizing: border-box;border: 1px solid #ccc;}
+	</style>
+</head>
+
+<body>
+	<header>
+		<a href="javascript:;" class="btn">删除</a>
+		手机相册
+		<a href="javascript:;" class="btn">选择</a>
+	</header>
+	<section>
+		<ul></ul>
+	</section>
+	<footer>
+		<a href="javascript:;">手机相册</a>
+		<a href="javascript:;">所有相册</a>
+	</footer>
+	<script type="text/javascript">
+		var oUl = document.getElementsByTagName('ul')[0];
+		var oBtn = document.getElementsByClassName('btn');
+		var move = [];//定义一个数组来保存已选择的li的索引
+		var html = '';
+		for (var i = 1; i <= 16; i++) {
+			html += '<li style="background-image:url(images/'+i+'.jpg)"></li>'
+		}
+		oUl.innerHTML = html;
+		var aLi = document.getElementsByTagName('li');
+		//封装定位方法
+		function position(){
+			for (var i = 0; i < aLi.length; i++) {
+				aLi[i].style.left = i%3 + 'rem';
+				aLi[i].style.top = Math.floor(i/3) + 'rem';
+			}
+		}
+		position();
+		//选择按钮
+		oBtn[1].addEventListener('touchend',select);
+		//删除按钮
+		oBtn[0].addEventListener('touchend',remove);
+		var mark = true;
+		function select(){
+			if (mark) {//选择
+				oBtn[1].innerHTML = '取消';
+				//给li绑定点击事件
+				for (var i = 0; i < aLi.length; i++) {
+					aLi[i].onOff = true;
+					aLi[i].index=i;
+					aLi[i].addEventListener('touchend',selectLi,false);
+				}
+			} else{
+				oBtn[1].innerHTML = '选择';
+				oBtn[0].style.display = 'none';
+				//取消删除功能，图片透明度还原
+				for (var i = 0; i < aLi.length; i++) {
+					aLi[i].style.opacity = 1;
+					aLi[i].removeEventListener('touchend',selectLi,false);
+				}
+				// move.length = 0;//数组清空,为下次照片选择做准备
+			}
+			mark = !mark;
+		}
+		//删除照片功能
+		function remove(){
+			/*console.log(move,1);
+			//对move进行排序，从大到小的排序，原因：index索引会干扰,从后往前没影响，但从前往后会根据新的索引删除
+			move = move.sort(function(a,b){//冒泡排序方法
+				return b-a;
+			});
+			console.log(move,2);
+			for (var i = 0; i < move.length; i++) {
+				oUl.removeChild(aLi[move[i]]);
+			}
+			this.style.display = 'none';//隐藏删除按钮
+			mark = false;
+			select();//调用选择、取消方法
+			position();//调用排序方法
+			move.length = 0;//数组清空,为下次照片选择做准备*/
+			move = move.sort(function(a,b){//冒泡排序方法
+				return a-b;
+			});
+			while(move.length){//move.length == 0循环终止
+				//pop()删除数组的最后一个值并返回
+				oUl.removeChild(aLi[move.pop()]);
+			}
+			this.style.display = 'none';//隐藏删除按钮
+			mark = false;
+			select();//调用选择、取消方法
+			position();//调用排序方法
+			move.length = 0;//数组清空,为下次照片选择做准备
+		}
+		//选择li的功能
+		function selectLi(){
+			if (this.onOff) {
+				move.push(this.index);//添加索引到数组
+				// console.log(this.index);
+				this.style.opacity = 0.2;
+				oBtn[0].style.display = 'block';
+			}else{
+				this.style.opacity = 1;
+				//移除move里面取消选择的li索引
+				for (var i = 0; i < move.length; i++) {
+					if (move[i] == this.index) {
+						move.splice(i);
+					}
+				}
+			}
+			this.onOff = !this.onOff;
+		}
+	</script>
+</body>
+</html>
+
+<!-- 学习笔记 -->
+<!-- em:相对单位长度，相对于父元素的字体大小font-size:16px    1em = 16px;
+rem：相对单位长度，相对于html的font-size:125px    1rem = 125px;
+动画：transition: left 0.5s,top 0.5s;
+
+//阻止跳转
+<a href="javascript:;"></a>
+
+//js索引需先定义
+for (var i = 0; i < aLi.length; i++) {
+	aLi[i].index=i;
+}
+move.push(this.index);//添加索引到数组
+
+//添加触摸监听事件，相比click，click有300ms的延迟而touch没有
+aLi[i].addEventListener('touchend',selectLi,false);
+//移除触摸监听事件
+aLi[i].removeEventListener('touchend',selectLi,false);
+
+//对move进行排序，从大到小的排序，原因：index索引会干扰,从后往前没影响，但从前往后会根据新的索引删除
+move = move.sort(function(a,b){//冒泡排序方法
+	return b-a;
+});
+while(move.length){//move.length == 0循环终止
+	//pop()删除数组的最后一个值并返回
+	oUl.removeChild(aLi[move.pop()]);
+}
+
+//移除move里面取消选择的li索引
+for (var i = 0; i < move.length; i++) {
+	if (move[i] == this.index) {
+		move.splice(i);
+	}
+} -->
