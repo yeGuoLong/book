@@ -8,17 +8,29 @@
 * 5.前端常用知识:[webStorageWiki](http://git.oschina.net/ygl231/book/wikis/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86)
 
 ##知识库:
-css预处理教程网站:[css预处理](http://www.w3cplus.com/css/css-preprocessor-sass-vs-less-stylus-2.html)
+* css预处理教程网站:[css预处理](http://www.w3cplus.com/css/css-preprocessor-sass-vs-less-stylus-2.html)
+* git练习:[gitPratice](https://codingstyle.cn/topics/51)
 
 ##工具:
-* 无损图片压缩网站:[无损图片压缩网站](https://tinypng.com/)
-* 可选择品质图片压缩网站:[可选择品质图片压缩网站](http://www.asqql.com/gifzip/)
-* 小图标字体库网站:[字体库图标](http://www.iconfont.cn/collections/)
+* 在线无损图片压缩网站:[无损图片压缩网站](https://tinypng.com/)
+* 在线可选择品质图片压缩网站:[可选择品质图片压缩网站](http://www.asqql.com/gifzip/)
+* 在线小图标字体库网站:[字体库图标](http://www.iconfont.cn/collections/)
+* 在线json格式化:[beJson](http://www.bejson.com/)
 
 
-##文件夹说明的主要特点:
-* 本地提交
-* 轻量级分支
-* 高度灵活
+##常用软件:
+* node[nodeDownload]()
+* FileZilla Client（FTP）[FileZillaDownload]()
+* GraphicsMagick（图片缩略图）[GraphicsMagickDownload]()
+* sublime[sublimeDownload]()
+* notepad++一款全能编辑器[notepad++Download]()
+* phpStudy[phpStudyDownload]()
+* xFtp(use with xShell)
+* xShell(用于连接服务器&启进程)
+* TakeColor(取色器)
+* gitHub[gitHubDownload]()
+
+
+
 
 
