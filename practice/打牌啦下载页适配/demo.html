@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1.0" />
+	<title>demo</title>
+	<style type="text/css">
+		*{padding: 0;margin: 0;}
+		body{background: #c6d82e;overflow: hidden;}
+		.container{position: fixed;width: 100%;top: 0;left: 0;}
+		.container img{width: 100%;display: block;}
+		.btns{position: fixed;left:21.875%;bottom: 3.37%;width: 56.25%;}
+		.btns img{width: 100%;display: block;}
+		.btns a{display: block;margin-top: 1.5%;}
+		/*适配ihone4的，可以不要，显示的是图片宽度320，高度504的尺寸，超出隐藏*/
+		@media screen and (max-width:320px) and (max-height:480px){
+			body{overflow: visible;}
+			.container{position: relative;height: 504px;overflow: hidden;}
+			.btns{position: absolute;}
+		}
+		/*适配ipad及pc端的，显示的是原来图片的尺寸*/
+		@media screen and (min-width:768px){
+			body{overflow: visible;}
+			.container{position: relative;overflow: hidden;}
+			.btns{position: absolute;}
+		}
+	</style>
+</head>
+<body>
+	<div class="container" id="container">
+		<img src="images/da_01.png" />
+		<img src="images/da_02.png" />
+		<img src="images/da_03.png" />
+		<img src="images/da_04.png" />
+		<img src="images/da_05.png" />
+		<!-- <img src="images/da_05.png" /> -->
+		<!-- 这边背景随便加多高 -->
+		<div class="btns">
+			<a href="#"><img src="download1.png" /></a>
+			<a href="#"><img src="download2.png" /></a>
+			<a href="#"><img src="download3.png" /></a>
+			<a href="#"><img src="download4.png" /></a>
+		</div>
+	</div>
+	<script>
+		// 设置图片最大自适应高度（宽高比），超出部分隐藏
+		var bodyWidth =  document.body.clientWidth;
+		var _container = document.getElementById('container');
+		console.log(bodyWidth);
+		if (bodyWidth >=768) {
+			_container.style.height = bodyWidth*1008/640 + 'px';
+		}
+	</script>
+</body>
+</html>

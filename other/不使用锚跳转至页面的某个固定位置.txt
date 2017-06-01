@@ -1,4 +1,9 @@
+id的方法
 <div data-role="page" id="pagetwo">
 </div>
 
 <a href="#pagetwo">页面二</a>
+
+
+用锚的方法
+<a name="趁你">xunzhao</a> <a href="#趁你">连接点</a>

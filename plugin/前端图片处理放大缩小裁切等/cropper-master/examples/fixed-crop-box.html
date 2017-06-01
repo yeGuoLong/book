@@ -31,15 +31,23 @@
   <script src="../dist/cropper.js"></script>
   <script>
     $(function () {
+      var cupWidth = $('body').width() *86/100;
+      var cupHeight = cupWidth * 9 / 22;
+      console.log('cupWidth'+cupWidth+',cupHeight'+cupHeight);
       $('#image').cropper({
-        viewMode: 1,
+        strict:false,
+        aspectRatio:22/9,
+        // viewMode: 1,
+        minCanvasWidth:cupWidth,
+        minCanvasHeight:cupWidth,
         dragMode: 'move',
-        autoCropArea: 0.65,
+        // autoCropArea: 1,
         restore: false,
         guides: false,
         highlight: false,
         cropBoxMovable: false,
-        cropBoxResizable: false
+        cropBoxResizable: false,
+        zoomable: true
       });
     });
   </script>

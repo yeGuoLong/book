@@ -1,0 +1,41 @@
+<!-- input自动对焦开始 -->
+<input id="q" name="q" aria-label="请输入搜索文字" accesskey="s" autofocus="autofocus" autocomplete="off" class="search-combobox-input" aria-haspopup="true" aria-combobox="list" role="combobox" x-webkit-grammar="builtin:translate" tabindex="0">
+AccessKey属性设置“热键”（页面快捷键）
+autofocus自动获得焦点
+autocomplete浏览器自动补全
+<!-- input自动对焦结束 -->
+
+<!-- input只允许输入数字开始（正则） -->
+<input id="money" type="text" placeholder="请输入整数"  name="money"  maxlength="6" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')" />
+<!-- input只允许输入数字结束 -->
+
+
+
+<!-- 不使用锚跳转至页面的某个固定位置开始 -->
+id的方法
+<div data-role="page" id="pagetwo"></div>
+<a href="#pagetwo">页面二</a>
+
+用锚的方法
+<a name="趁你">xunzhao</a> <a href="#趁你">连接点</a>
+<!-- 不使用锚跳转至页面的某个固定位置结束 -->
+
+
+<!-- iphone js加载后点击事件无效开始 -->
+设置css 
+<style>
+	#pic_list>li{cursor:pointer;}
+</style>
+js绑定
+<script>
+	$(document).on('click', '#pic_list>li', function() {
+	});
+</script>
+<!-- iphone js加载后点击事件无效结束 -->
+
+
+<!-- 鼠标事件隐藏开始 -->
+<style>
+	#tt{pointer-events:none;}
+</style>
+<!-- 鼠标事件隐藏结束 -->

@@ -9,3 +9,7 @@
     }
     return size;
   }
+
+
+  // 或者
+  $('input[name="size"]:checked').val();
