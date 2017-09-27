@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="../../js/ajax.js"></script>
+</head>
+<body>
+	<!-- <form action="ajax.html" method="get">
+		<input name="name" type="text" value="111">
+	</form> -->
+	<input type="submit" value="提交">
+</body>
+	<script type="text/javascript">
+		var btn = document.querySelector('input[type="submit"]');
+		btn.onclick = function(){
+			ajax({
+				type:'get',
+				url:'http://192.168.0.121:8081/mobile/ifGetCoupon.htm',
+				data:{cus: '101059',choose: '1'},
+				contentType:'application/json',
+				dataType:'jsonp',
+				success:function(data){
+					console.log(data);
+				},
+				fail:function(data){
+					console.log(data);
+				}
+
+			});
+		};
+	</script>
+</html>

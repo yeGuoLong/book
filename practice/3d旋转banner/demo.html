@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>旋转banner</title>
+	<style type="text/css">
+		*{margin: 0;padding: 0;}
+		body{
+			text-align: center;
+		}
+		#box{width: 1050px;height: 360px;margin: 100px auto 20px;position: relative;}
+		#box li{width: 1050px;height: 360px;list-style: none;position: absolute;left: 0;top: 0;display: none;}
+		#show{display: none;width: 1050px;height: 360px;position: absolute;left: 0;top: 0;perspective: 1000px;}
+		#show .em1{background-image: url("1.png");transform: translateZ(5px); }/*前面*/
+		#show .em2{background-image: url("2.png");transform: translateZ(-5px) rotateX(-180deg); }/*后面*/
+		#show div{width: 525px;height: 72px;position: relative;float: left;transform-style: preserve-3d;}
+		#show em{position: absolute;left: 0;top: 0;width: 525px;height: 72px;}/*前后两个面*/
+		#show span{position: absolute;right: 0;bottom: 0;background: #ccc;}/*两个侧面*/
+		#show .span1{width: 10px;height: 72px;transform-origin: right;transform: translateZ(5px) rotateY(-90deg);}
+		#show .span2{width: 525px;height: 10px;transform-origin: bottom;transform: translateZ(5px) rotateX(90deg);}
+		#show .div2 .span1{left: 0;right: auto;transform-origin: left;transform: translateZ(5px) rotateY(90deg);}
+		@keyframes move1{
+			/*初始*/
+			0%{transform: rotateX(0deg) rotateZ(0deg) rotateY(0deg);
+				animation-timing-function: ease;/*动画速度曲线*/
+			}
+			/*木板立起来*/
+			60%{transform: rotateX(0deg) rotateZ(0deg) rotateY(-60deg);
+				animation-timing-function: ease-in;/*动画速度曲线*/
+			}
+			80%{transform: rotateX(90deg) rotateZ(-10deg) rotateY(-40deg);
+				animation-timing-function: ease-out;/*动画速度曲线*/
+			}
+			100%{transform: rotateX(180deg) rotateZ(0deg) rotateY(0deg);
+			}
+		}
+		@keyframes move2{
+			/*初始*/
+			0%{transform: rotateX(0deg) rotateZ(0deg) rotateY(0deg);
+				animation-timing-function: ease;/*动画速度曲线*/
+			}
+			/*木板立起来*/
+			60%{transform: rotateX(0deg) rotateZ(0deg) rotateY(60deg);
+				animation-timing-function: ease-in;/*动画速度曲线*/
+			}
+			80%{transform: rotateX(90deg) rotateZ(-10deg) rotateY(40deg);
+				animation-timing-function: ease-out;/*动画速度曲线*/
+			}
+			100%{transform: rotateX(180deg) rotateZ(0deg) rotateY(0deg);
+			}
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<ul>
+			<li><img src="1.png" /></li>
+			<li><img src="2.png" /></li>
+			<li><img src="1.png" /></li>
+			<li><img src="2.png" /></li>
+			<li><img src="1.png" /></li>
+		</ul>
+		<!-- 存储旋转的小木板 -->
+		<div id="show"></div>
+	</div>
+	
+	<input type="button" id="prev" value="上一张">
+	<input type="button" id="next" value="下一张">
+	<script type="text/javascript">
+		var oShow = document.querySelector('#show');
+		var aImg = document.querySelectorAll('img');
+		var aLi = document.querySelectorAll('li');
+		var oPrev = document.querySelector('#prev');
+		var oNext = document.querySelector('#next');
+		// 生成小木板div
+		for (var i = 0; i < 5; i++) {
+			var div1 = document.createElement('div');
+			var div2 = document.createElement('div');
+			div2.className = 'div2';
+			div1.innerHTML = '<em class="em1" style="background-position:0 -'+i*72+'px"></em><span class="span1"></span><em class="em2" style="background-position:0 -'+i*72+'px"></em><span class="span2"></span>';
+			div2.innerHTML = '<em class="em1" style="background-position:-525px -'+i*72+'px"></em><span class="span1"></span><em class="em2" style="background-position:-525px -'+i*72+'px"></em><span class="span2"></span>';
+			oShow.appendChild(div1);
+			oShow.appendChild(div2);
+		}
+		aLi[0].style.display = 'block';
+		oShow.urls = [];//图片路径存储
+		for (var i = 0,l=aImg.length; i < l; i++) {
+			oShow.urls.push(aImg[i].getAttribute('src'));
+		}
+		// console.log(oShow.urls);
+		oShow.iNow = 0;//当前的索引
+		oShow.onOff = false;//按钮开关
+
+		oNext.onclick = function(){
+			if (oShow.onOff) return;
+			oShow.onOff = true;
+			var iNext = oShow.iNow+1;
+			if (iNext >= oShow.urls.length) {
+				iNext= 0;
+			}
+			//交换
+			tab(iNext);
+		};
+		oPrev.onclick = function(){
+			if (oShow.onOff) return;
+			oShow.onOff = true;
+			var iNext = oShow.iNow-1;
+			if (iNext < 0) {
+				iNext= oShow.urls.length - 1;
+			}
+			//交换
+			tab(iNext);
+		};
+		function tab(iNext){
+			//交换背景
+			var aEm1 = oShow.querySelectorAll('.em1');
+			var aEm2 = oShow.querySelectorAll('.em2');
+			var aDiv = oShow.querySelectorAll('div');
+			var l = aEm1.length;
+			//切换背景图片
+			for (var i = 0; i < l; i++) {
+				aEm1[i].style.backgroundImage = 'url("'+oShow.urls[oShow.iNow]+'")';
+				aEm2[i].style.backgroundImage = 'url("'+oShow.urls[iNext]+'")';
+			}
+			oShow.style.display = 'block';
+			aLi[oShow.iNow].style.display = 'none';
+			// 添加动画
+			for (var j = 0,l2 = aDiv.length; j < l2; j+=2) {
+				// 调用延时方法
+				var time = (j+1)*50;
+				aDiv[j].style.transform = 'rotateX(0deg)';
+				aDiv[j+1].style.transform = 'rotateX(0deg)';
+				setTimer(aDiv[j],time,'move1');
+				setTimer(aDiv[j+1],time,'move2');
+			}
+			
+
+			//动画执行完成
+			setTimeout(function(){
+				oShow.iNow = iNext;
+				aLi[iNext].style.display = 'block';
+				oShow.style.display = 'none';
+				oShow.onOff = false;
+			},aDiv.length*50 + 1500);
+		}
+
+		/*
+			*obj:需要添加动画的对象；
+			*time:延时的时间；
+			*name：动画时间
+		 */
+		function setTimer(obj,time,name){
+			obj.timer = setTimeout(function(){
+				// 先清除定时器，再添加
+				clearTimeout(obj.timer);
+				obj.style.animation = name+' 1.5s';
+				obj.style.transform = 'rotateX(180deg)';
+				// 1.5s后清除动画
+				obj.timer = setTimeout(function(){
+					obj.style.animation = '';
+					clearTimeout(obj.timer);
+				},1500);
+			},time);
+		}
+	</script>
+</body>
+</html>

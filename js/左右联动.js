@@ -1,4 +1,4 @@
-/****左右联动开始***/
+/****左右联动开始*****/
 $('.main-list a:first').addClass("selected");
 $('.main-list a:first').children("p").addClass('active');
 $('.list dl:last').css('min-height',$(window).height()-$('.header').height() - $('.bar-bottom').height());
